@@ -11,10 +11,7 @@ class GamePage extends StatefulWidget {
 
 class _GamePageState extends State<GamePage> {
 
-  List<List<PuzzlePieceModel?>> puzzle = [
-    [const PuzzlePieceModel(text: "1", number: 1), const PuzzlePieceModel(text: "2", number: 2)],
-    [const PuzzlePieceModel(text: "3", number: 3), null]
-  ];
+  List<List<PuzzlePieceModel?>> puzzle = PuzzlePieceModel.generateRandomPuzzle(15);
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +43,7 @@ class _GamePageState extends State<GamePage> {
       body: Center(
         child: GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
+            crossAxisCount: 4,
             mainAxisSpacing: 10,
             crossAxisSpacing: 10
           ),

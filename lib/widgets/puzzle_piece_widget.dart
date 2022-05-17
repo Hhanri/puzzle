@@ -23,8 +23,8 @@ class PuzzlePieceWidget extends StatelessWidget {
         splashFactory: NoSplash.splashFactory,
         enableFeedback: false,
         child: Container(
-          height: 150,
-          width: 150,
+          height: 50,
+          width: 50,
           decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(20)),
             color: Colors.white,

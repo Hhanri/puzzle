@@ -4,3 +4,7 @@ part of 'puzzle_bloc.dart';
 abstract class PuzzleState {}
 
 class PuzzleInitial extends PuzzleState {}
+
+class PuzzleGameState {}
+
+class PuzzleWinState {}
