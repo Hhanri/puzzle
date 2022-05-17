@@ -12,8 +12,8 @@ class GamePage extends StatefulWidget {
 class _GamePageState extends State<GamePage> {
 
   List<List<PuzzlePieceModel?>> puzzle = [
-    [PuzzlePieceModel(text: "1", number: 1), PuzzlePieceModel(text: "2", number: 2)],
-    [PuzzlePieceModel(text: "3", number: 3), null]
+    [const PuzzlePieceModel(text: "1", number: 1), const PuzzlePieceModel(text: "2", number: 2)],
+    [const PuzzlePieceModel(text: "3", number: 3), null]
   ];
 
   @override
@@ -45,7 +45,11 @@ class _GamePageState extends State<GamePage> {
     return Scaffold(
       body: Center(
         child: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            mainAxisSpacing: 10,
+            crossAxisSpacing: 10
+          ),
           itemCount: length*subLength,
           itemBuilder: (BuildContext context, int index) {
             final int row = index ~/ length;
@@ -60,9 +64,8 @@ class _GamePageState extends State<GamePage> {
                   });
                 }
               );
-            } else {
-              return Container();
             }
+            return Container();
           },
         ),
       ),
