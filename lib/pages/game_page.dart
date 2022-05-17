@@ -10,7 +10,11 @@ class GamePage extends StatelessWidget {
     final piece = PuzzlePieceModel(text: "text", number: 2);
     return Scaffold(
       body: Center(
-        child: PuzzlePieceWidget(puzzlePiece: piece),
+        child: PuzzlePieceWidget(
+          puzzlePiece: piece,
+          onTap: () {
+          }
+        ),
       ),
     );
   }
