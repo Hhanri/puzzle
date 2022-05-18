@@ -43,14 +43,20 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
       puzzle = [...puzzle];
     }
 
+    bool comparePuzzles() {
+      for (int i = 0; i < length; i++) {
+        if (!listEquals(puzzle[i], originalPuzzle[i])) {
+          return false;
+        }
+      }
+      return true;
+    }
+
     on<MovePieceEvent>((event, emit) {
       movePiece(piece: event.piece, row: event.row, col: event.col);
       emit(PuzzleGameState(length: length, subLength: subLength, puzzle: puzzle));
-      if (puzzle == originalPuzzle) {
-        print("YOU WIN");
+      if (comparePuzzles()) {
         emit(PuzzleWinState());
-      } else {
-        print("NOT WON YET");
       }
     });
   }
