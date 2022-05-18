@@ -41,6 +41,9 @@ class PuzzlePieceWidget extends StatelessWidget {
             child: Text(
               puzzlePiece.text,
               textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 20
+              ),
             ),
           ),
         ),

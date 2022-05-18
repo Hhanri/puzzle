@@ -1,8 +1,5 @@
-import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
-import 'package:meta/meta.dart';
 import 'package:puzzle/models/puzzle_piece_model.dart';
 
 part 'puzzle_event.dart';
@@ -12,14 +9,17 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
     PuzzleBloc() : super(PuzzleInitial()) {
 
     List<List<PuzzlePieceModel?>> puzzle =  PuzzlePieceModel.generateOriginalPuzzle(16);
+
     final List<List<PuzzlePieceModel?>> originalPuzzle = PuzzlePieceModel.generateOriginalPuzzle(16);
     final int length = puzzle.length;
     final int subLength = puzzle[0].length;
 
-    on<PuzzleEvent>((event, emit) {
-    });
+    void shufflePuzzle () {
+      puzzle =  PuzzlePieceModel.generateOriginalPuzzle(16);
+    }
 
     on<StartGameEvent>((event, emit) {
+      shufflePuzzle();
       emit(PuzzleGameState(length: length, subLength: subLength, puzzle: puzzle));
     });
 
@@ -40,7 +40,6 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
         puzzle[row][col+1] = piece;
         puzzle[row][col] = null;
       }
-      puzzle = [...puzzle];
     }
 
     bool comparePuzzles() {
