@@ -9,9 +9,6 @@ class PuzzlePieceModel extends Equatable{
     required this.number
   });
 
-  @override
-  List<Object?> get props => [text, number];
-
   static List<List<PuzzlePieceModel?>> generateOriginalPuzzle(int length) {
     List<PuzzlePieceModel?> base = generate1DPuzzle(length);
     return generatePuzzle(length, base);
@@ -20,7 +17,6 @@ class PuzzlePieceModel extends Equatable{
   static List<List<PuzzlePieceModel?>> generateRandomPuzzle(int length) {
     final List<PuzzlePieceModel?> base = generate1DPuzzle(length)..shuffle();
     final List<List<PuzzlePieceModel?>> puzzle = generatePuzzle(length, base);
-    print(puzzle);
     return puzzle;
   }
 
@@ -30,7 +26,6 @@ class PuzzlePieceModel extends Equatable{
       puzzle.add(PuzzlePieceModel(text: i.toString(), number: i));
     }
     puzzle.add(null);
-    print(puzzle);
     return puzzle;
   }
 
@@ -51,4 +46,7 @@ class PuzzlePieceModel extends Equatable{
     }
     return puzzle;
   }
+
+  @override
+  List<Object?> get props => [text, number];
 }
