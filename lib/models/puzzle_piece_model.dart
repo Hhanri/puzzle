@@ -13,27 +13,42 @@ class PuzzlePieceModel extends Equatable{
   List<Object?> get props => [text, number];
 
   static List<List<PuzzlePieceModel?>> generateOriginalPuzzle(int length) {
-    List<List<PuzzlePieceModel?>> puzzle = [];
-    for (int i = 0; i <= length ~/ 4; i++) {
-      puzzle.add([]);
-      for (int j = 0; j < 4; j++) {
-        int num = i*4 + j%4;
-        if (num == length) {
-          puzzle[i].add(null);
-        } else {
-          puzzle[i].add(PuzzlePieceModel(text: num.toString(), number: num));
-        }
-      }
-    }
-    return puzzle;
+    List<PuzzlePieceModel?> base = generate1DPuzzle(length);
+    return generatePuzzle(length, base);
   }
 
   static List<List<PuzzlePieceModel?>> generateRandomPuzzle(int length) {
-    List<List<PuzzlePieceModel?>> puzzle = generateOriginalPuzzle(length);
-    for (int i = 0; i < puzzle.length; i++) {
-      puzzle[i].shuffle();
+    final List<PuzzlePieceModel?> base = generate1DPuzzle(length)..shuffle();
+    final List<List<PuzzlePieceModel?>> puzzle = generatePuzzle(length, base);
+    print(puzzle);
+    return puzzle;
+  }
+
+  static List<PuzzlePieceModel?> generate1DPuzzle(int length) {
+    List<PuzzlePieceModel?> puzzle = [];
+    for (int i = 0; i < length - 1; i++) {
+      puzzle.add(PuzzlePieceModel(text: i.toString(), number: i));
     }
-    puzzle.shuffle();
+    puzzle.add(null);
+    print(puzzle);
+    return puzzle;
+  }
+
+  static List<List<PuzzlePieceModel?>> generatePuzzle(int length, List<PuzzlePieceModel?> base) {
+    List<List<PuzzlePieceModel?>> puzzle = [];
+    for (int i = 0; i < length ~/ 4; i++) {
+      puzzle.add([]);
+      for (int j = 0; j < 4; j++) {
+        int num = i*4 + j%4;
+        if (num < length) {
+          puzzle[i].add(
+            base[num] != null
+              ? PuzzlePieceModel(text: base[num]!.text, number: base[num]!.number)
+              : null
+          );
+        }
+      }
+    }
     return puzzle;
   }
 }

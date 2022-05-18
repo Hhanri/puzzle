@@ -11,7 +11,7 @@ class GamePage extends StatefulWidget {
 
 class _GamePageState extends State<GamePage> {
 
-  List<List<PuzzlePieceModel?>> puzzle = PuzzlePieceModel.generateRandomPuzzle(15);
+  List<List<PuzzlePieceModel?>> puzzle = PuzzlePieceModel.generateRandomPuzzle(16);
 
   @override
   Widget build(BuildContext context) {
@@ -21,19 +21,19 @@ class _GamePageState extends State<GamePage> {
 
     void movePiece({required PuzzlePieceModel piece, required int row, required int col}) {
       if (row-1 >= 0 && puzzle[row-1][col] == null) {
-        puzzle[row-1][col] = puzzle[row][col];
+        puzzle[row-1][col] = piece;
         puzzle[row][col] = null;
       }
       else if (row+1 < length && puzzle[row+1][col] == null) {
-        puzzle[row+1][col] = puzzle[row][col];
+        puzzle[row+1][col] = piece;
         puzzle[row][col] = null;
       }
       else if (col-1 >= 0 && puzzle[row][col-1] == null) {
-        puzzle[row][col-1] = puzzle[row][col];
+        puzzle[row][col-1] = piece;
         puzzle[row][col] = null;
       }
       else if (col-1 < subLength && puzzle[row][col+1] == null) {
-        puzzle[row][col+1] = puzzle[row][col];
+        puzzle[row][col+1] = piece;
         puzzle[row][col] = null;
       }
       print(puzzle);
