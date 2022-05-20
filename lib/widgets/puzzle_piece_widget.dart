@@ -4,10 +4,12 @@ import 'package:puzzle/models/puzzle_piece_model.dart';
 class PuzzlePieceWidget extends StatelessWidget {
   final VoidCallback onTap;
   final PuzzlePieceModel puzzlePiece;
+  final double size;
   const PuzzlePieceWidget({
     Key? key,
     required this.puzzlePiece,
-    required this.onTap
+    required this.onTap,
+    required this.size
   }) : super(key: key);
 
   @override
@@ -23,8 +25,8 @@ class PuzzlePieceWidget extends StatelessWidget {
         splashFactory: NoSplash.splashFactory,
         enableFeedback: false,
         child: Container(
-          height: 50,
-          width: 50,
+          height: size,
+          width: size,
           decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(20)),
             color: Colors.black12,

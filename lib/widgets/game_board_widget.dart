@@ -16,6 +16,8 @@ class GameBoardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+    double spacing = 10;
     return Container(
       constraints: BoxConstraints(
         minHeight: height * (3/4),
@@ -25,10 +27,10 @@ class GameBoardWidget extends StatelessWidget {
       child: GridView.builder(
         physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 4,
-          mainAxisSpacing: 10,
-          crossAxisSpacing: 10
+          mainAxisSpacing: spacing,
+          crossAxisSpacing: spacing,
         ),
         itemCount: state.length * state.subLength,
         itemBuilder: (BuildContext context, int index) {
@@ -36,6 +38,7 @@ class GameBoardWidget extends StatelessWidget {
           final int col = index % state.subLength;
           if (puzzle[row][col] != null) {
             return PuzzlePieceWidget(
+              size: 50,
               puzzlePiece: puzzle[row][col]!,
               onTap: () {
                 BlocProvider.of<PuzzleBloc>(context).add(MovePieceEvent(piece: puzzle[row][col]!, row: row, col: col));
