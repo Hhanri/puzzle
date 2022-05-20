@@ -15,28 +15,31 @@ class GameBoardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      physics: const NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 4,
-        mainAxisSpacing: 10,
-        crossAxisSpacing: 10
+    return Container(
+      color: Colors.black12,
+      child: GridView.builder(
+        physics: const NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 4,
+          mainAxisSpacing: 10,
+          crossAxisSpacing: 10
+        ),
+        itemCount: state.length * state.subLength,
+        itemBuilder: (BuildContext context, int index) {
+          final int row = index ~/ state.length;
+          final int col = index % state.subLength;
+          if (puzzle[row][col] != null) {
+            return PuzzlePieceWidget(
+              puzzlePiece: puzzle[row][col]!,
+              onTap: () {
+                BlocProvider.of<PuzzleBloc>(context).add(MovePieceEvent(piece: puzzle[row][col]!, row: row, col: col));
+              }
+            );
+          }
+          return Container();
+        },
       ),
-      itemCount: state.length * state.subLength,
-      itemBuilder: (BuildContext context, int index) {
-        final int row = index ~/ state.length;
-        final int col = index % state.subLength;
-        if (puzzle[row][col] != null) {
-          return PuzzlePieceWidget(
-            puzzlePiece: puzzle[row][col]!,
-            onTap: () {
-              BlocProvider.of<PuzzleBloc>(context).add(MovePieceEvent(piece: puzzle[row][col]!, row: row, col: col));
-            }
-          );
-        }
-        return Container();
-      },
     );
   }
 }

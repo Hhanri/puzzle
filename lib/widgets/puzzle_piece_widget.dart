@@ -27,12 +27,18 @@ class PuzzlePieceWidget extends StatelessWidget {
           width: 50,
           decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(20)),
-            color: Colors.white,
+            color: Colors.black12,
             boxShadow: [
               BoxShadow(
                 offset: Offset(3, 3),
                 spreadRadius: 3,
                 color: Colors.black54,
+                blurRadius: 5
+              ),
+              BoxShadow(
+                offset: Offset(-3, -3),
+                spreadRadius: 3,
+                color: Colors.white,
                 blurRadius: 5
               )
             ]
