@@ -11,17 +11,26 @@ class GameScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    if (width <= 740) {
+    double doubleFlex = 1600/width;
+    int intFlex;
+    if (doubleFlex > 1.5) {
+      intFlex = 7;
+    } else if (doubleFlex < 1.0) {
+      intFlex = 3;
+    } else {
+      intFlex = 4;
+    }
+    if (width <= 800) {
       return GameBoardScreen(state: state);
     } else {
       return Row(
         children: [
-          const Spacer(),
+          const Spacer(flex: 2,),
           Expanded(
-            flex: 3,
+            flex: intFlex,
             child: GameBoardScreen(state: state)
           ),
-          const Spacer()
+          const Spacer(flex: 2,)
         ],
       );
     }
