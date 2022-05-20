@@ -15,7 +15,12 @@ class GameBoardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     return Container(
+      constraints: BoxConstraints(
+        minHeight: height * (3/4),
+        maxWidth: double.infinity
+      ),
       color: Colors.black12,
       child: GridView.builder(
         physics: const NeverScrollableScrollPhysics(),

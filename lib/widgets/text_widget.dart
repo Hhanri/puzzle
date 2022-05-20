@@ -1,0 +1,16 @@
+import 'package:flutter/material.dart';
+
+class TextWidget extends StatelessWidget {
+  final String text;
+  const TextWidget({Key? key, required this.text}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.black12,
+      child: Center(
+        child: Text(text),
+      )
+    );
+  }
+}

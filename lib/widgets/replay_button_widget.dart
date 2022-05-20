@@ -7,11 +7,16 @@ class ReplayButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {
-        BlocProvider.of<PuzzleBloc>(context).add(StartGameEvent());
-      },
-      child: const Text("PLAY")
+    return Container(
+      color: Colors.black12,
+      child: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            BlocProvider.of<PuzzleBloc>(context).add(StartGameEvent());
+          },
+          child: const Text("PLAY")
+        ),
+      ),
     );
   }
 }
