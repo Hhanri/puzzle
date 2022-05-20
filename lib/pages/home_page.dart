@@ -10,7 +10,6 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black12,
       body: Center(
         child: BlocProvider<PuzzleBloc>(
           create: (context) => PuzzleBloc()..add(StartGameEvent()),
